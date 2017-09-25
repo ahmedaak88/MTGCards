@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block head_title %}allcarts{% endblock head_title %}   
+
+{% block content %}
+	<div class="row">
+	{% for x in carts %}
+	
+	<div class="col">
+	<div class="jumbotron">
+		<h4>{{x.user}}</h4>
+	{% for y in x.cartitem_set.all %}
+	<h3>{{y.items.name}}</h3>
+	<img src="{{y.items.image}}" alt="{{y.items.name}}">
+	<p>{{y.quantity}}</p>
+	{% endfor %}
+		</div>	
+		</div>	
+		
+	{% endfor %}
+	</div>
+{% endblock content%}
