@@ -1,31 +1,35 @@
 {% extends "base.html" %}
-{% block head_title %}Cart{% endblock head_title %}   
+{% block head_title %}Collection{% endblock head_title %}   
 {% block content %}
-
 <div class="row">
-    <div class="col-sm-12">
-        <h1>Your Cart: </h1>
-        
-                {% for item  in cart.cartitem_set.all %}
-                <table class="table">
-            <ul>
-                  <td>{{item.items.name}}</td> 
-                  <td><img src="{{item.items.image}}" alt="{{item.items.name}}"></td>
-                  <td>{{item.quantity}}</td>
-                  <td>
+  
+      <div class="card-group">
+            
+              
+            
+             
+              
+         {% for item  in cart.cartitem_set.all %}
+          <div class="col-sm-4">
+              <div class="card" style="width: 20em;">
+                <img class="card-img-top" src="{{item.items.image}}" alt="{{item.items.name}}">
+                <div class="card-body">
+                  <h4 class="card-title">{{item.items.name}}</h4>
+                  
                   <form action="{% url 'useritems:mycart' %}" method="GET"> 
                     <input type="hidden" name="item" value="{{item.items.id}}">
                     <input type="number" name="qty" value="{{item.quantity}}">
                     <input type="submit" class="btn btn-warning" value="Update Item">
-                </form>
-                </td>
-         </ul>
-        </table>
-                {% endfor %}
-       
+                  </form>
+                </div>
+          </div>
+              </div>
+         {% endfor %}
+          
 
+        
+        
     </div>
 </div>
-
 
 {% endblock content%}

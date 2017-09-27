@@ -18,6 +18,14 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'mainapp:logout'  %}">Logout</a>
       </li>
+    {% if request.user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'useritems:mycart'  %}">My Collections</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="{% url 'trading:allcarts'  %}">List of users and there cards</a>
+      </li>
+      {% endif %}
     </ul>
     <form class="navbar-form navbar-left" action="{% url 'mainapp:listofcards'  %}" method="GET">
         <div class="form-group">

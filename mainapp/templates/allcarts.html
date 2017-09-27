@@ -1,21 +1,27 @@
 {% extends "base.html" %}
-{% block head_title %}allcarts{% endblock head_title %}   
+{% block head_title %}All collection{% endblock head_title %}
 
 {% block content %}
-	<div class="row">
-	{% for x in carts %}
-	
-	<div class="col">
-	<div class="jumbotron">
-		<h4>{{x.user}}</h4>
-	{% for y in x.cartitem_set.all %}
-	<h3>{{y.items.name}}</h3>
-	<img src="{{y.items.image}}" alt="{{y.items.name}}">
-	<p>{{y.quantity}}</p>
-	{% endfor %}
-		</div>	
-		</div>	
-		
-	{% endfor %}
-	</div>
+
+<div class="row">
+{% for x in carts %}
+
+		<div class="col-sm-4">
+			<p>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{x.user}}" aria-expanded="false" aria-controls="{{x.user}}">
+			    {{x.user}}
+			  </button>
+			</p>
+			<div class="collapse" id="{{x.user}}">
+			  <div class="card card-body">
+			   	{% for y in x.cartitem_set.all %}
+				<p>{{y.items.name}}</p>
+				<img src="{{y.items.image}}" alt="{{y.items.name}}">
+				<p>{{y.quantity}}</p>
+				{% endfor %}
+				</div>
+		  </div>
+</div>
+{% endfor %}
+</div>
 {% endblock content%}

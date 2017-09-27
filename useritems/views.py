@@ -17,9 +17,12 @@ def mycart(request):
 			cart_item.quantity = int(qty)
 			cart_item.save()
 
+	context ={
+		'cart': cart,
+		'user':request.user
+	}
 
 
-
-	return render(request, 'cart.html',{'cart': cart})
+	return render(request, 'cart.html',context)
 
 
